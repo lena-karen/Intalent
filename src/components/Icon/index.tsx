@@ -1,17 +1,18 @@
-import React from 'react'
+import React, {FC} from 'react'
 import './index.scss'
 import { IconContext } from 'react-icons'
+import { CSSProperties } from '@emotion/serialize'
 
 interface IconProp{
 	icon: React.ReactNode,
 	style?: Object,
 	title?: string,
-	styleContainer?: Object
+	className?: Object
 }
 
-export const Icon = ({title, icon, style = {}, styleContainer = {}}: IconProp) => {
+export const Icon: FC<IconProp> = ({title, icon, style = {}, className}) => {
 	return (
-		<div className={['icon__wrapper', {styleContainer}].join(' ')}>
+		<div className={`icon__wrapper ${className}`}>
 			{
 				title && <p>{title}</p>
 			}
@@ -24,4 +25,9 @@ export const Icon = ({title, icon, style = {}, styleContainer = {}}: IconProp) =
 	)
 }
 
+// export const ComponentWithBorder = (Component: React.FC<IconProp>) => (props: IconProp) => {
+// 	return (<div style={{border: '1px solid gray'}}><Component {...props} /></div>)
+// }
+
+// export const IconWithBorder = ComponentWithBorder(Icon)
 

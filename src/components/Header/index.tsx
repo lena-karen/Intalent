@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useContext } from 'react'
 import { ColorModeContext } from '../../theme/themeContext'
-import Select, { StylesConfig } from 'react-select'
+import Select, { StylesConfig, components, GroupProps } from 'react-select'
 import Logo from '../Logo'
 import Nav from '../Nav'
 import Search from '../Search'
@@ -26,36 +26,44 @@ export default function Header() {
 	const theme = useTheme()
 	const colors = tokens(theme.palette.mode)
 	const colorStyles: StylesConfig = {
-		control: (styles) => ({ ...styles, backgroundColor: 'red', color: 'gray' }),
-		option: (styles, { isDisabled, isFocused, isSelected }) => {
-		  return {
-			...styles,
-			backgroundColor: isDisabled
-			? undefined
-			: isSelected
-			? 'data.color'
-			: isFocused
-			? 'white'
-			: 'undefined',
+		control: (styles) => ({ ...styles, color: 'gray' }),
+		// option: (styles, { isDisabled, isFocused, isSelected }) => {
+		//   return {
+		// 	...styles,
+		// 	backgroundColor: isDisabled
+		// 	? undefined
+		// 	: isSelected
+		// 	? 'data.color'
+		// 	: isFocused
+		// 	? 'white'
+		// 	: 'undefined',
 
-			color: isSelected
-			? isFocused
-			? 'white'
-			  	: 'white' 
-				: 'gray',
+		// 	color: isSelected
+		// 	? isFocused
+		// 	? 'white'
+		// 	  	: 'white' 
+		// 		: 'gray',
 			
-			cursor: isDisabled ? 'not-allowed' : 'default',
-		  };
-		},
+		// 	cursor: isDisabled ? 'not-allowed' : 'default',
+		//   };
+		// },
 		valueContainer: (styles) => ({
 			...styles,
-			minWidth: '26px',
-			padding: '0.2 0',
-			border: '1px solid gray'
+			minWidth: '35px',
+			padding: '0.2',
+			border: '1px solid gray',
+			//backgroundColor: isDisabled ? 'undefined' : 'gray'
 		  }),
-		input: (styles) => ({ ...styles}),
+		input: (styles) => {
+			return { 
+				...styles, 
+				padding: '0.2',
+				//height: isFocused ? '24px' : 0
+			}
+		},
+			
 		placeholder: (styles) => ({ ...styles, padding: '0'}),
-		singleValue: (styles) => ({ ...styles }),
+		singleValue: (styles) => ({ ...styles, padding: '0.2'}),
 	  };
 
 	  console.log({...colorStyles})
@@ -68,40 +76,44 @@ export default function Header() {
 		{ value: 'de', label: 'DE'},
 	]
 
-	// const selectStyles = {
-	// 	control: {
-	// 		'border': 'none'
-	// 	}
-	// }
   return (
 	<header className = 'header'>
 		<Logo />
 		<Search />
 
 		<div className = 'header__menu'>
-			<Nav  />
+			<Nav />
 			<div className='header__menu__select'>
 				<Select 
 					options={languages}
 					//onChange = {(e) => setLang(e.target.option)}
 					className = 'react-select-container'
 					classNamePrefix = "react-select"
-					// defaultValue= {languages[0]}
 					placeholder = {	
 					<Icon 
 						icon = {<MdOutlineLanguage size={24} />} 
-						styleContainer = 'lng_border'
+						className = 'header__menu__select__icon'
 					/>
 					}
-					//options={colourOptions}
 					styles={colorStyles}
 					isSearchable={false}
+					theme={(theme) => ({
+						...theme,
+						borderRadius: 5,
+						colors: {
+						  ...theme.colors,
+						  primary25: 'gray',
+						  primary: 'black',
+						},
+					  })}
 				/>
 			</div>
 
 			{/* <Icon icon = {<CiSettings size={24}/>} style = { {fill: 'white'}} /> */}
 
 			<Icon icon = {<CiBellOn size={24}/>} style = { {fill: 'white'}} />
+			
+		
 			<Link to = '/'>
 				<Icon icon = {<MdOutlineManageAccounts size={24}/>} />
 			</Link>
