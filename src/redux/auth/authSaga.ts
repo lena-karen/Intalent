@@ -7,13 +7,13 @@ import { signUpRequestAction, signUpSuccessAction, logInRequestAction, logInSucc
 import { saveSettingsRequestAction } from '../setting'
 import { AxiosInstance } from '../../API/axios'
 
-import {ACTION} from '../../constants/actions'
-import axios from 'axios'
-type responseType = {
-	email: string,
-	password: string,
-	id: number
-}
+// import {ACTION} from '../../constants/actions'
+// import axios from 'axios'
+// type responseType = {
+// 	email: string,
+// 	password: string,
+// 	id: number
+// }
 
 export function* logInSaga({email, password, onSuccess, onError}: ReturnType<typeof logInRequestAction>): Generator {
 	// const payload = {email, password}
@@ -30,22 +30,22 @@ export function* logInSaga({email, password, onSuccess, onError}: ReturnType<typ
 		yield put({type: LOG_IN_FAILURE, err})
 	}
 }
-function authHeader() {
-	const user = localStorage.getItem('user')
-	if (user) {
-		const res = JSON.parse(user);
-		if (res.accessToken) {
-			return { Authorization: 'Bearer ' + res.accessToken };
-		  } else {
-			return {};
-		  }
-	}
+// function authHeader() {
+// 	const user = localStorage.getItem('user')
+// 	if (user) {
+// 		const res = JSON.parse(user);
+// 		if (res.accessToken) {
+// 			return { Authorization: 'Bearer ' + res.accessToken };
+// 		  } else {
+// 			return {};
+// 		  }
+// 	}
   
 	
-  }
-function register(email: string, password: string) {
-	return axios.post('http://localhost:8080/register',{ email, password })
-}
+//   }
+// function register(email: string, password: string) {
+// 	return axios.post('http://localhost:8080/register',{ email, password })
+// }
 export function* signUpSaga({email, password, confirm_password, onSuccess, onError}: ReturnType<typeof signUpRequestAction>): Generator {
 	//const payload = {email, password}
 	console.log(confirm_password)
