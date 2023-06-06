@@ -1,0 +1,37 @@
+.select {
+	.react-select-container {
+		outline: none;
+	}
+	.react-select__value-container {
+		border-radius: 0.5rem;
+	}
+	.react-select__value-container--has-value {
+		height: 33.39px;
+		width: 38px;
+		padding: 0.2rem;
+	}
+	.react-select__input-container {
+		margin: 0 !important;
+	}
+	.react-select__control, .react-select__control-value {
+		border: none;
+		outline: none;
+		background: none;
+		box-shadow: none;
+		cursor: pointer;
+	}
+	.react-select__control--is-open .react-select__value-container {
+		background-color: gray;
+	}
+	.react-select__indicator-separator, .react-select__dropdown-indicator, .react-select-indicators {
+		display: none;
+	}
+	.react-select__menu {
+		outline: none;
+		width: 100%;
+	}
+	.react-select__single-value {
+		color: gray;
+		text-align: center;
+	}
+}

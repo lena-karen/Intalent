@@ -1,31 +1,18 @@
-@use '../../styles/base' as *;
-
+@use '../../styles/base/' as *;
 .nav {
 	@include flexBox(null, center);
-	gap: 2rem;
-	color: $color_C5C6CB;
-	&__svg {
-		color: $color_C5C6CB;
-	}
-	&__profile {
-		@include flexBox(center, center);
-		gap: .2rem;
-		cursor: pointer;
-		&__icon {
+		gap: 1rem;
+		&__select__icon {
+			border: none !important;
+		}
+		&__theme {
 			@include flexBox(center, center);
 			cursor: pointer;
-			svg {
-				color: $color_C5C6CB;
-				height: 1.5rem;
-				width: 1.5rem;
+			border: .1rem solid gray;
+			border-radius: .5rem;
+			padding: 0.2rem;
+			&__icon {
+				@include flexBox(center, center)
 			}
 		}
-
-
-
-	}
-	&__btn {
-		color: $color_C5C6CB;
-		padding: 0.5rem 1rem;
-	}
 }

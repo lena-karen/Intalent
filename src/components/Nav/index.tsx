@@ -5,8 +5,10 @@ import { useDispatch } from 'react-redux'
 import { RiAccountCircleLine } from 'react-icons/ri'
 // import { CgProfile } from 'react-icons/cg'
 import { IconContext } from 'react-icons'
-
-import Button from '../Button'
+import { CiBellOn } from 'react-icons/ci'
+import { AiOutlineLogin } from 'react-icons/ai'
+import { MdOutlineManageAccounts } from 'react-icons/md'
+import { Icon } from '../Icon'
 
 import './index.scss'
 
@@ -20,29 +22,18 @@ export default function Nav() {
   }
   return (
 	<nav className = 'nav'>
-   
+			<Link to = '/'>
+        <Icon icon = {<CiBellOn size={24}/>} style = { {fill: 'white'}} />
+      </Link>
 
-    {/* <div className='nav__profile'> */}
-      {/* <IconContext.Provider value={{ style: { fill: 'white' } }}>
-        <div className='nav__profile__icon'>
-          <RiAccountCircleLine />
-        </div>
-      </IconContext.Provider> */}
-      {/* <Button handleClick = {handleLogOut} className = 'nav__btn' title = 'Account' />
-    </div> */}
- 
-		{/* {
-			user?.isLoggedIn
-			? <Link to = 'login'>
-          <Button handleClick = {handleLogOut} className = 'nav__btn' title = 'Log out' />
-        </Link>
-			: <Link to = 'login'>
-          <Button className = 'nav__btn' title = 'Log in' />
-        </Link>
-		} */}
-    {/* <Link to = 'register'>
-      <Button>Sign up</Button>
-    </Link> */}
+			
+			<Link to = '/'>
+				<Icon icon = {<MdOutlineManageAccounts size={24}/>} />
+			</Link>
+
+			<Link to = 'login'>       
+				<Icon title = 'Login' icon = {<AiOutlineLogin size={24}/>} style = { {fill: 'white'}} />
+			</Link>
   </nav>
   )
 }
