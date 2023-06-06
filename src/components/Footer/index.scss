@@ -1,0 +1,7 @@
+@use '../../styles/base' as *;
+.footer {
+	height: $footer_height;
+	padding: 3rem 0 1rem;
+	@include flexBox(space-between, center);
+	border-top: .1rem solid lightgray;
+}

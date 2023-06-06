@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "motorolochka@mail.ru",
+      "password": "$2a$10$Zno0b2lRUPRWHRrVxoi.q.ZrZezNrQxzNWofFGcGAMG1JgvE.enOS",
+      "id": 1
+    },
+    {
+      "email": "example@gmail.com",
+      "password": "$2a$10$4nXhgptaPOEwxNrUz.Fr8OVtJcAYOzwpkfqGEJpxpu5/mOgAdkCpG",
+      "id": 2
+    },
+    {
+      "email": "olenasherman@mail.ru",
+      "password": "$2a$10$cO48.B58EpeLIP8/T5A6zeXt2.hufiloPuGId7msIP3TIrV17JVzK",
+      "id": 3
+    }
+  ]
+}

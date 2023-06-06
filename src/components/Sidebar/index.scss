@@ -1,0 +1,22 @@
+@use '../../styles/base' as *;
+
+.sidebar {
+	@include flexBox(space-between, null);
+	flex-direction: column;
+
+	&__link__block {
+
+		border-bottom: .1rem solid $color_C5C6CB;
+
+		&__a {
+			padding: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&:hover {
+				transform: scaleX(1.2);
+			}
+		}
+
+	}
+}

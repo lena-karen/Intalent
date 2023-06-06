@@ -1,0 +1,13 @@
+@mixin position($name, $top, $right, $bottom, $left) {
+	position: $name;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}
+
+@mixin flexBox($x, $y) {
+	display: flex;
+	justify-content: $x;
+	align-items: $y;
+}

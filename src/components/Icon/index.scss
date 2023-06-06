@@ -1,0 +1,12 @@
+@use '../../styles/base' as *;
+
+.icon__wrapper {
+	@include flexBox(center, center);
+	cursor: pointer;
+	border: .1rem solid gray;
+	border-radius: .5rem;
+	padding: 0.2rem;
+	&__context {
+		@include flexBox(center, center);
+	}
+}

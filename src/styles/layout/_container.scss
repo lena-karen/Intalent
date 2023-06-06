@@ -1,0 +1,7 @@
+@use '../base/variables' as *;
+.container {
+	max-width: $maxWidth;
+	width: 100%;
+	padding: 0 2rem;
+	margin: 0 auto;
+}

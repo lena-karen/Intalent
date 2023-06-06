@@ -1,0 +1,78 @@
+@use '../../styles/base' as *;
+.header {
+	height: $header_height;
+	padding: 3rem 0;
+	@include flexBox(space-between, center);
+	border-bottom: .1rem solid lightgray;
+	//background: $color_0F0F10;
+	color: $color_C5C6CB;
+	&__menu {
+		@include flexBox(null, center);
+		gap: 1rem;
+	
+		.react-select-container {
+			outline: none;
+			// width: 24px;
+		}
+		.react-select__value-container {
+			// border: 1px solid gray;
+    		// padding: none !important;
+    		border-radius: 0.5rem;
+			display: flex;
+			text-align: center;
+		}
+		.react-select__input-container {
+			margin: 0 !important;
+			display: flex;
+			align-items: center;
+		}
+		.react-select__control, .react-select__control-value {
+			border: none;
+			outline: none;
+			background: none;
+			box-shadow: none;
+			cursor: pointer;
+		}
+		.react-select__indicator-separator, .react-select__dropdown-indicator {
+			display: none;
+		}
+		.react-select__menu {
+			background-color: '$color_202227';
+			color: 'red';
+			outline: none;
+			// text-align: center;
+			// display: flex;
+			// align-items: center;
+		}
+		.react-select__menu:hover {
+			background: 'red';
+		}
+		.react-select__single-value {
+			color: $color_ffffff;
+			text-align: center;
+		}
+		.react-select__input, .react-select__control--is-open, .react-select__control--is-focus {
+			outline: 'white';
+			box-shadow: none;
+			text-align: center;
+			display: flex;
+			align-items: center;
+		}
+		// .react-select__control.react-select__control--is-focused {
+		// 	background-color: 'red';
+		// }
+		&__theme {
+			@include flexBox(center, center);
+			cursor: pointer;
+			border: .1rem solid gray;
+			border-radius: .5rem;
+			padding: 0.2rem;
+			&__icon {
+				@include flexBox(center, center)
+			}
+		}
+	}
+}
+.lng_border {
+	border: none;
+}

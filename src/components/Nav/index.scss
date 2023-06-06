@@ -1,0 +1,31 @@
+@use '../../styles/base' as *;
+
+.nav {
+	@include flexBox(null, center);
+	gap: 2rem;
+	color: $color_C5C6CB;
+	&__svg {
+		color: $color_C5C6CB;
+	}
+	&__profile {
+		@include flexBox(center, center);
+		gap: .2rem;
+		cursor: pointer;
+		&__icon {
+			@include flexBox(center, center);
+			cursor: pointer;
+			svg {
+				color: $color_C5C6CB;
+				height: 1.5rem;
+				width: 1.5rem;
+			}
+		}
+
+
+
+	}
+	&__btn {
+		color: $color_C5C6CB;
+		padding: 0.5rem 1rem;
+	}
+}

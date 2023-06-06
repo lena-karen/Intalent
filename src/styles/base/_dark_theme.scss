@@ -1,0 +1,13 @@
+@use './colors' as *;
+body {
+	background-color: $color_191A1F;
+}
+input, button {
+	background-color: $color_202227;
+	color: $color_C5C6CB;
+	border: .5rem solid $color_202227;
+}
+p, a, h1, h2, h3, h4, h5, h6, li {
+	color: $color_ffffff;
+}
+
