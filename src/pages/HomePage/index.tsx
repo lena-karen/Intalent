@@ -1,12 +1,23 @@
 import React from 'react'
+import { FormattedMessage } from 'react-intl'
 
-export const HomePage = () => {
+export default function HomePage() {
   return (
 	<div>
-		<h1>Intalent</h1>
+
+		<h1>		
+			<FormattedMessage
+         		id = "home.title"
+         		defaultMessage="Welcome"
+       		/>
+		</h1>
 		<p>
-			About Us...
+			<FormattedMessage
+         		id = "home.content"
+         		defaultMessage="Intalent"
+       		/>
 		</p>
+
 	</div>
   )
 }

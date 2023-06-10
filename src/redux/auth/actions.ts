@@ -1,10 +1,10 @@
-import { IUser, ISignUp, ILogIn } from '../../types'
+import { IUser, ISignUp } from '../../types'
 import { LOG_IN_REQUEST, LOG_IN_SUCCESS, SIGN_UP_REQUEST, SIGN_UP_SUCCESS } from '../types'
 import {ACTION} from '../../constants/actions'
 
-export const signUpRequestAction = ({email, password, confirm_password, onSuccess, onError}: ISignUp) => {
+export const signUpRequestAction = ({email, password, onSuccess, onError}: ISignUp) => {
 	console.log(email, password)
-	return {type: SIGN_UP_REQUEST, email, password, confirm_password, onSuccess, onError}
+	return {type: SIGN_UP_REQUEST, email, password, onSuccess, onError}
 }
 
 export const signUpSuccessAction = (response: any) => {
@@ -17,11 +17,11 @@ export const signUpSuccessAction = (response: any) => {
 // 	return {type: SIGN_UP_FAILURE, error: error}
 // }
 
-export const logInRequestAction = ({email, password, onSuccess, onError}: ILogIn) => (
+export const logInRequestAction = ({email, password, onSuccess, onError}: ISignUp) => (
 	{type: LOG_IN_REQUEST, email, password, onSuccess, onError}
 )
 
-export const logInSuccessAction = (response: ILogIn) => (
+export const logInSuccessAction = (response: ISignUp) => (
 	{type: LOG_IN_SUCCESS, data: response}
 )
 

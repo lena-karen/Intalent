@@ -1,0 +1,36 @@
+{
+	"home.title" : "Добро пожаловать на Integra" ,
+	"home.content" : "Здесь Вы найдете нужную Вам информацию на понятном Вам языке",
+	"header.theme": "Цвета сайта",
+
+	"register.title" : "Регистрация",
+	"register.email" : "Введите электронный адрес",
+	"register.password" : "Введите пароль",
+	"register.confirm_password" : "Подтвердите пароль",
+
+	"login.title" : "Вход",
+	"login.email" : "Введите электронный адрес",
+	"login.password" : "Введите пароль",
+
+	"login.forgot" : "Забыли пароль?",
+	"login.registered" : "Еще не зарегистрированы?",
+
+	"login.submit" : "Отправить",
+
+	"search.placeholder" : "Поиск...",
+
+	"popup_menu.profile": "Профиль",
+	"popup_menu.settings": "Настройки",
+	"popup_menu.messages": "Сообщения",
+	"popup_menu.logout": "Выйти",
+
+	"terms": "Принимаю условия использования",
+
+	"form.email": "E-Mail обязателен",
+	"form.password": "Пароль обязателен",
+	"form.password.min": "Пароль должен содержать более 8 знаков",
+	"form.password.max": "Пароль должен содержать не более 32 знаков",
+	"form.password.confirm": "Пожалуйста, подтвердите пароль",
+	"form.terms": "Принятие условий использования обязательно",
+	"form.password.match": "Пароли не совпадают"
+}

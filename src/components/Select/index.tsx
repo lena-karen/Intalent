@@ -1,36 +1,23 @@
 import { CSSProperties } from '@mui/styled-engine'
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import Select, { StylesConfig } from 'react-select'
-import { languages } from '../../constants/languages'
+import { languages } from '../../lang/locales'
 import './index.scss'
 
 interface SelectProps {
 	placeholder?: string | JSX.Element
-	handleClick?: () => void,
+	setLang: (e: any) => void,
 }
-export default function SelectComponent({placeholder, handleClick}: SelectProps) {
+export default function SelectComponent({placeholder, setLang}: SelectProps) {
+
+	const changeLanguage = (option: any) => {
+		console.log(option)
+		localStorage.setItem('lang', JSON.stringify(option.value))
+		setLang(option.value)
+	}
 	const colorStyles: StylesConfig = {
 		control: (styles) => ({ ...styles, color: 'gray' }),
-		// option: (styles, { isDisabled, isFocused, isSelected }) => {
-		//   return {
-		// 	...styles,
-		// 	backgroundColor: isDisabled
-		// 	? undefined
-		// 	: isSelected
-		// 	? 'data.color'
-		// 	: isFocused
-		// 	? 'white'
-		// 	: 'undefined',
 
-		// 	color: isSelected
-		// 	? isFocused
-		// 	? 'white'
-		// 	  	: 'white' 
-		// 		: 'gray',
-			
-		// 	cursor: isDisabled ? 'not-allowed' : 'default',
-		//   };
-		// },
 		valueContainer: (styles) => ({
 			...styles,
 			minWidth: '35px',
@@ -54,7 +41,8 @@ export default function SelectComponent({placeholder, handleClick}: SelectProps)
 	 <div className='select'>
 			<Select 
 				options={languages}
-				onChange = {handleClick}
+				onChange = {changeLanguage}
+				defaultValue = {languages[3].value}
 				className = 'react-select-container'
 				classNamePrefix = "react-select"
 				placeholder = {placeholder}

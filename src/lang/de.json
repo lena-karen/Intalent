@@ -1,0 +1,34 @@
+{
+	"home.title" : "Willkommen auf Integra" ,
+	"home.content" : "Hier finden Sie alles was Sie brauchen in Ihre Sprache",
+	"header.theme": "Farbmodus",
+	"register.title" : "Registration",
+	"register.email" : "Email eingeben",
+	"register.password" : "Password eingeben",
+	"register.confirm_password" : "Password bestätigen",
+
+	"login.title" : "Einloggen",
+	"login.email" : "Email eingeben",
+	"login.password" : "Password eingeben",
+	"login.forgot" : "Password vergessen?",
+	"login.registered" : "Nicht registriert?",
+
+	"login.submit" : "Senden",
+
+	"search.placeholder" : "Suchen...",
+
+	"popup_menu.profile": "Profil",
+	"popup_menu.settings": "Einstellungen",
+	"popup_menu.messages": "Nachrichten",
+	"popup_menu.logout": "Ausloggen",
+
+	"terms": "Nutzungsbedingungen akzeptieren",
+
+	"form.email": "E-Mail ist erforderlich",
+	"form.password": "Paswort ist erforderlich",
+	"form.password.min": "Passwort muss mehr als 8 Zeichen lang sein",
+	"form.password.max": "Passwort muss weniger als 32 Zeichen lang sein",
+	"form.password.confirm": "Bitte bestätigen Sie Ihr Passwort",
+	"form.terms": "Nutzungsbedingungen akzeptieren ist erforderlich",
+	"form.password.match": "Passwörter stimmen nicht überein"
+}

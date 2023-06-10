@@ -1,156 +1,175 @@
-import React, {useCallback, useRef, useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { useNavigate, useParams, Link } from 'react-router-dom'
-import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
-import { IconContext } from 'react-icons'
-import { Input } from '../Input'
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
+import { useNavigate, Link } from 'react-router-dom'
+import { LoadingButton } from '@mui/lab';
+
 // import { signUpRequestAction, logInRequestAction } from '../../redux/auth/actions'
-// import { authRequestAction } from '../../redux/actions/authAction'
 import { signUpSaga, logInSaga, signUpRequestAction, logInRequestAction } from '../../redux'
-//import { logInRequestAction } from '../../redux/actions/logInRequestAction'
+import { FormattedMessage, useIntl } from 'react-intl'
 
-import Button from '../Button'
-import './index.scss'
-//import axios from '../../requests/axios'
+import { FormInput } from '../FormInput'
 
-type formData = {
-  email: string,
-  password: string,
-  confirm_password: string
-}
+import { literal, object, string, TypeOf} from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Box, FormControlLabel, FormGroup, FormHelperText, Typography, Checkbox } from '@mui/material';
 
 export default function Form({route}: any) {
-  const [passwordVisible, setPasswordVisible] = useState(false)
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
+  const [loading, setLoading] = useState(false);
+
+  const intl = useIntl()
+  const registerSchema = object({
+    // name: string()
+    // 	.nonempty('Name is required')
+    // 	.max(32, 'Name must be less than 100 characters')
+  
+    email: string().nonempty(intl.formatMessage({id: 'form.email'})),
+    password: string()
+      .nonempty(intl.formatMessage({id: 'form.password'}))
+      .min(8, intl.formatMessage({id: 'form.password.min'}))
+      .max(32, intl.formatMessage({id: 'form.password.max'})),
+    confirm_password: string().nonempty(intl.formatMessage({id: 'form.password.confirm'})),
+    terms: literal(true, {
+      errorMap: () => ({ message: intl.formatMessage({id: 'form.terms'}) }),
+    }),
+  }).refine(data => data.password === data.confirm_password, {
+    path: ['confirm_password'],
+    message: intl.formatMessage({id: 'form.password.match'})
+  })
+  
+  type RegisterInput = TypeOf<typeof registerSchema>;
+
+  const methods = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+  });
+
   const {
-          register, 
           handleSubmit, 
           reset, 
-          watch,
-          formState: {errors}
-        } = useForm<formData>()
+          register,
+          formState: {isSubmitSuccessful, errors}
+        } = methods;
 
-  const email = watch('email')
-  const password = watch('password')
-  const confirm_password = watch('confirm_password')
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful]);
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  let isDisabled
-  route === 'register' 
-  ? isDisabled = !email || !password || !confirm_password
-  : isDisabled = !email || !password
-  type formValues = {
-    email: string,
-    password: string,
-    confirm_password: string
-  }
-  // type FieldError = {
-  //   type: string;
-  //   ref?: HTMLElement;
-  //   message?: string;
-  // };
-
-  const submit: SubmitHandler<formValues> = useCallback(() => {
+  const submit: SubmitHandler<RegisterInput> = ({email, password, confirm_password}) => {
     if (route === 'register') {
-      console.log('reg')
-      dispatch(signUpRequestAction({email, password, confirm_password}))
-    } else {
-      console.log('login')
+      console.log('register', email, password, confirm_password)
+      //dispatch(signUpRequestAction({email, password, confirm_password}))
+     } else {
+      console.log('login', email, password)
       //dispatch(logInRequestAction({email, password}))
-    }
+     }
     navigate('/')
-    reset()
-  }, [email, password, confirm_password])
+  }
 
   return (
-	<form className = 'form' onSubmit = {handleSubmit(submit)}>
-    <Input 
-      placeholder = 'Your email'
-      type = 'email' 
-      className = 'form__input' 
-      name = 'email'
-      register = {register}
-      rules = {{required: 'Email is required'}}
-    />
-    {
-      errors.email 
-      ? <p>{errors?.email.message}</p>
-      : ''
-    }
+    <FormProvider {...methods}>
+      <Box
+        component='form'
+        noValidate
+        autoComplete='off'
+        onSubmit={handleSubmit(submit)}
+        sx = {{
+          dispay: 'flex',
+          flexDirection: 'column',
+          gap: '1rem'
+        }}
+      >
+        <FormInput 
+          name = 'email' 
+          fullWidth
+          sx={{ mb: 2 }}
+          errors = {errors}
+          placeholder = {intl.formatMessage({id: 'register.email'})}
+        /> 
 
-    <div className='form__password'>
-      <Input 
-        placeholder =  'Your password'
-        type = {passwordVisible ? 'text' : 'password'} 
-        className = 'form__input'
-        name = 'password'
-        register = {register}
-        rules = {{required: 'Password is required'}}
-      />
-  
-      <span className = 'form__password__eye' onClick={() => setPasswordVisible(prev => !prev)}>
+        <FormInput 
+          name = 'password' 
+          fullWidth
+          sx={{ mb: 2 }}
+          errors = {errors}
+          placeholder = {intl.formatMessage({id: 'register.password'})}
+          isPassword = {true}
+        />
+
         {
-          passwordVisible 
-            ? <IconContext.Provider value={{ style: { fill: 'black' } }}><AiFillEye /></IconContext.Provider>
-            : <IconContext.Provider value={{ style: { fill: 'black' } }}><AiFillEyeInvisible /></IconContext.Provider>
-        } 
-      </span>
-    </div>
-    {
-      errors.password 
-      ? <p>{errors?.password.message}</p>
-      : ''
-    }
-    {
-      route === 'login' &&
-      <div className = 'form__login'>
-        <Link to = '/'>
-          Forgot the password
-        </Link>
+          route === 'register' &&
+          <>
+            <FormInput 
+              name = 'confirm_password' 
+              fullWidth
+              sx={{ mb: 2 }}
+              errors = {errors}
+              placeholder = {intl.formatMessage({id: 'register.confirm_password'})}
+              isPassword = {true}
+            />
 
-        <Link to = '/register'>
-          Not registered yet?
-        </Link>
-      </div>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox 
+                    required 
+                    sx = {{
+                      '&.Mui-checked': {
+                        color: 'gray',
+                      },
+                    }}
+                  />
+                }
+                {...register('terms')}
+              
+                label={
+                  <Typography 
+                    sx = {{fontSize: '1rem'}}
+                    color={errors['terms'] ? 'error' : 'inherit'}
+                  >
+                      {intl.formatMessage({id: 'terms'})}
+                  </Typography>
+                }
+              />
+              <FormHelperText error={!!errors['terms']} sx = {{mb: '1rem'}}>
+                {errors['terms'] ? errors['terms'].message : ''}
+              </FormHelperText>
+            </FormGroup>
+          </>
+        }
 
-    }
-    {
-      route === 'register' &&
-      <>
-        <div className='form__password'>
-          <Input 
-            placeholder = 'Confirm your password'
-            type = {confirmPasswordVisible ? 'text' : 'password'}  
-            className = 'form__input' 
-            name = 'confirm_password'
-            register={register}
-            rules = {{required: 'Password is required'}}
-          />
+        <LoadingButton 
+          loading = {loading} 
+          variant="outlined" 
+          fullWidth type = 'submit'
+          sx = {{borderColor: 'gray', color: 'gray', mb: '1rem'}}
+        >
+          <span>{intl.formatMessage({id: 'login.submit'})}</span>
+        </LoadingButton>
 
-          <span className = 'form__password__eye' onClick={() => setConfirmPasswordVisible(prev => !prev)}>
-            {
-              confirmPasswordVisible 
-              ? <IconContext.Provider value={{ style: { fill: 'black' } }}><AiFillEye /></IconContext.Provider>
-              : <IconContext.Provider value={{ style: { fill: 'black' } }}><AiFillEyeInvisible /></IconContext.Provider>
-            } 
-          </span>
-        </div>
         {
-      errors.confirm_password 
-      ? <p>{errors?.confirm_password.message}</p>
-      : ''
-    }
-        <Link to = '/login'>
-          Log in
-        </Link>
-      </>
+          route === 'login' 
+          ?
+          <div className = 'form__login'>
+            <Link to = '/'>
+              <FormattedMessage id = 'login.forgot' />
+            </Link>
 
-    }
+            <Link to = '/register'>
+              <FormattedMessage id = 'login.registered' />
+            </Link>
+          </div>
+          :             
+          <Link to = '/login'>
+            <FormattedMessage id = 'login.title' />
+          </Link>
+        }
+      </Box>
+    </FormProvider>
 
-    <Button className = 'form__input' type = 'submit' title = 'Submit' isDisabled = {isDisabled} />
-  </form>
   )
 }

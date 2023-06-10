@@ -11,3 +11,56 @@ p, a, h1, h2, h3, h4, h5, h6, li {
 	color: $color_ffffff;
 }
 
+
+	$BLACK_PRIMARY_DEFAULT: '#000000';
+	$color_500: '#0F0E0E';
+	$color_600: '#232323';
+	$color_800: '#292929';
+	$color_700: '#3D3D3D';
+	$color_900: '#525252';
+
+
+
+	$SECONDARY_DEFAULT: '#7C7C7C';
+
+
+	$WHITE_DEFAULT: '#FFFFFF';
+	$WHITE100: '#F7F7F7';
+
+	$GRAY_DEFAULT: '#3C3C3C';
+
+	$borderColor: '#3C3C3C';
+	$blue: '#1900D5';
+
+	{
+		white: {
+			DEFAULT: '#FFFFFF',
+			100: '#F7F7F7',
+			200: '#D1D1D1',
+		},
+		primary: {
+			DEFAULT: '#FFFFFF',
+			500: '#F7F7F7',
+		},
+		secondary: {
+			DEFAULT: '#7C7C7C',
+		},
+		black: {
+			DEFAULT: '#000000',
+			100: '#525252',
+			200: '#3D3D3D',
+			300: '#292929',
+			400: '#141414',
+			500: '#000000',
+			600: '#000000',
+			700: '#000000',
+			800: '#000000',
+			900: '#000000',
+		},
+		gray: {
+			DEFAULT: '#3C3C3C',
+		},
+		accentMain: '#F7F7F7',
+		borderColor: '#D1D1D1',
+		blue: '#1900D5',
+	})

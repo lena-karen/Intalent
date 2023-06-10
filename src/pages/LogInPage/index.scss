@@ -3,4 +3,8 @@
 	@include flexBox(null, center);
 	flex-direction: column;
 	padding: 0 4rem;
+	&__buttons {
+		display: flex;
+		justify-content: space-between;
+	}
 }

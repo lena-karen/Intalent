@@ -1,0 +1,36 @@
+{
+	"home.title" : "Welcome to Integra " ,
+	"home.content" : "Here you can find usefull information in your language",
+	"header.theme": "Theme",
+
+	"register.title" : "Registration",
+	"register.email" : "Enter email",
+	"register.password" : "Enter password",
+	"register.confirm_password" : "Confirm your password",
+
+	"login.title" : "Log in",
+	"login.email" : "Enter email",
+	"login.password" : "Enter password",
+	"login.forgot" : "Forgot the password?",
+	"login.registered" : "Not registered?",
+
+	"login.submit" : "Send",
+
+	"search.placeholder" : "Search...",
+
+	"popup_menu.profile": "Profile",
+	"popup_menu.settings": "Settings",
+	"popup_menu.messages": "Messages",
+	"popup_menu.logout": "Log out",
+
+	"terms": "Accept Terms and Conditions",
+
+	"form.email": "Email is required",
+	"form.password": "Pasword is required",
+	"form.password.min": "Password must be more than 8 characters",
+	"form.password.max": "Password must be less than 32 characters",
+	"form.password.confirm": "Please confirm your password",
+	"form.terms": "Accept Terms is required",
+	"form.password.match": "Passwords do not match"
+
+}

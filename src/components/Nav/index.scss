@@ -2,6 +2,9 @@
 .nav {
 	@include flexBox(null, center);
 		gap: 1rem;
+		&__account {
+			// position: relative;
+		}
 		&__select__icon {
 			border: none !important;
 		}

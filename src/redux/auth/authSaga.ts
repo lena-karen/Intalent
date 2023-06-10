@@ -1,19 +1,11 @@
 
 import { put, takeEvery, call, takeLatest, take } from 'redux-saga/effects'
-import { ISignUp, ILogIn } from '../../types'
+import { ISignUp } from '../../types'
 import { userApi } from './api'
 import { LOG_IN_FAILURE, SIGN_UP_FAILURE } from '../types'
 import { signUpRequestAction, signUpSuccessAction, logInRequestAction, logInSuccessAction } from './actions'
 import { saveSettingsRequestAction } from '../setting'
 import { AxiosInstance } from '../../API/axios'
-
-// import {ACTION} from '../../constants/actions'
-// import axios from 'axios'
-// type responseType = {
-// 	email: string,
-// 	password: string,
-// 	id: number
-// }
 
 export function* logInSaga({email, password, onSuccess, onError}: ReturnType<typeof logInRequestAction>): Generator {
 	// const payload = {email, password}
@@ -30,32 +22,17 @@ export function* logInSaga({email, password, onSuccess, onError}: ReturnType<typ
 		yield put({type: LOG_IN_FAILURE, err})
 	}
 }
-// function authHeader() {
-// 	const user = localStorage.getItem('user')
-// 	if (user) {
-// 		const res = JSON.parse(user);
-// 		if (res.accessToken) {
-// 			return { Authorization: 'Bearer ' + res.accessToken };
-// 		  } else {
-// 			return {};
-// 		  }
-// 	}
-  
-	
-//   }
-// function register(email: string, password: string) {
-// 	return axios.post('http://localhost:8080/register',{ email, password })
-// }
-export function* signUpSaga({email, password, confirm_password, onSuccess, onError}: ReturnType<typeof signUpRequestAction>): Generator {
+
+export function* signUpSaga({email, password, onSuccess, onError}: ReturnType<typeof signUpRequestAction>): Generator {
 	//const payload = {email, password}
-	console.log(confirm_password)
-	
+
 	try {
 		const response: any = yield call(userApi.signUpRequest, {email, password})
+		console.log(response)
 		// const response = yield axios.post(register, authHeader)
 		
-		yield put(saveSettingsRequestAction({token: response.data.accessToken, isLoggedIn: true}))
-		console.log(response)
+		// yield put(saveSettingsRequestAction({content: {token: response.data.accessToken, isLoggedIn: true}}))
+
 		yield put(signUpSuccessAction(response.data))
 		onSuccess?.()
 	}
@@ -67,6 +44,6 @@ export function* signUpSaga({email, password, confirm_password, onSuccess, onErr
 }
 
 export function* authSaga(): Generator {
-	yield takeEvery(logInRequestAction, logInSaga);
+	// yield takeEvery(logInRequestAction, logInSaga);
 	yield takeEvery(signUpRequestAction, signUpSaga);
   }

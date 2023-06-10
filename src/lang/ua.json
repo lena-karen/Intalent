@@ -1,0 +1,35 @@
+{
+	"home.title" : "Ласкаво просимо на Integra" ,
+	"home.content" : "Тут ви знайдете потрібну інформацію зрозумілою для Вас мовою",
+	"header.theme": "Фарби сайту",
+
+	"register.title" : "Реєстрація",
+	"register.email" : "Введіть электронну адресу",
+	"register.password" : "Введіть пароль",
+	"register.confirm_password" : "Підтвердіть пароль",
+
+	"login.title" : "Вхід",
+	"login.email" : "Введіть електронну адресу",
+	"login.password" : "Введіть пароль",
+	"login.forgot" : "Забули пароль?",
+	"login.registered" : "Ще не зареєстровані?",
+
+	"login.submit" : "Відправити",
+
+	"search.placeholder" : "Пошук...",
+
+	"popup_menu.profile": "Профіль",
+	"popup_menu.settings": "Налаштування",
+	"popup_menu.messages": "Повідомлення",
+	"popup_menu.logout": "Вихід",
+
+	"terms": "Приймаю умови користування",
+
+	"form.email": "E-Mail обов'язковий",
+	"form.password": "Пароль обов'язковий",
+	"form.password.min": "Пароль має містити понад 8 знаків",
+	"form.password.max": "Пароль має містити не більш, ніж 32 знака",
+	"form.password.confirm": "Будь ласка, підтвердьте пароль",
+	"form.terms": "Ухвалення умов використання обов'язкове",
+	"form.password.match": "Паролі не співпадають"
+}

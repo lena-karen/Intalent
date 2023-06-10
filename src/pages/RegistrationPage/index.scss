@@ -4,4 +4,8 @@
 	flex-direction: column;
 	width: 100%;
 	padding: 0 4rem;
+	&__buttons {
+		display: flex;
+		justify-content: center;
+	}
 }
