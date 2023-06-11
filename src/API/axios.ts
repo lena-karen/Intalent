@@ -26,10 +26,10 @@ AxiosInstance.interceptors.request.use( (req) => {
   
   AxiosInstance.interceptors.response.use(
 	(res) => res,
-	(error) => {
-	  if (error.response && error.response.status === 401) {
-		localStorage.removeItem('user');
-	  }
-	  return Promise.reject(error);
-	},
+	// (error) => {
+	//   if (error.response && error.response.status === 401) {
+	// 	localStorage.removeItem('user');
+	//   }
+	//   return Promise.reject(error);
+	// },
   );

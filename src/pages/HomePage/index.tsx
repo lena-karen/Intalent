@@ -1,7 +1,10 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
-
+import { useDispatch } from 'react-redux'
+import { signUpRequestAction } from '../../redux'
 export default function HomePage() {
+	const dispatch= useDispatch()
+
   return (
 	<div>
 
@@ -17,7 +20,7 @@ export default function HomePage() {
          		defaultMessage="Intalent"
        		/>
 		</p>
-
+		<button onClick={() => dispatch(signUpRequestAction({email: 'email', password: 'password'}))}>Test</button>
 	</div>
   )
 }

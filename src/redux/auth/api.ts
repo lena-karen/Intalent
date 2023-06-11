@@ -1,3 +1,4 @@
+import { todo } from 'node:test'
 import { AxiosInstance } from '../../API/axios' 
 
 export const userApi = {
@@ -8,6 +9,9 @@ export const userApi = {
 	signUpRequest({...rest}) {
 		console.log('signup', rest)
 		return AxiosInstance.post('/register', rest)
-	}
+	},
 
+	todo() {
+		return AxiosInstance.get('https://jsonplaceholder.typicode.com/todos/1')
+	}
 }

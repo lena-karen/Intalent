@@ -1,4 +1,4 @@
-import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, LOG_OUT, LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_IN, SIGN_UP_FAILURE, LOG_IN_FAILURE } from '../types'
+import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, LOG_IN_REQUEST, LOG_IN_SUCCESS, SIGN_UP_FAILURE, LOG_IN_FAILURE } from '../types'
 
 const initialState = {
 	isLoading: false,
@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const authReducer = (state = initialState, action: {type: any, data: any, error: any}) => {
-	console.log(action)
+//	console.log(action)
 	switch (action.type) {
 		case SIGN_UP_REQUEST:
 		case LOG_IN_REQUEST:

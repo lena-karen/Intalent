@@ -12,7 +12,7 @@ import { FormInput } from '../../components/FormInput'
 import { useDispatch } from 'react-redux';
 import { literal, object, string, TypeOf} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, FormControlLabel, FormGroup, FormHelperText, Typography, Checkbox } from '@mui/material';
+import { Box, Button, FormControlLabel, FormGroup, FormHelperText, Typography, Checkbox } from '@mui/material';
 
 import './index.scss'
 
@@ -69,14 +69,15 @@ export default function RegistrationPage() {
 
 	const submit: SubmitHandler<RegisterInput> = ({email, password}) => {
 		console.log('register', email, password)
-		dispatch(signUpRequestAction({email, password}))
-		navigate('/')
+		// dispatch(signUpRequestAction({email, password}))
+		//navigate('/')
 	}
   return (
 	<section className = 'registration'>
 		<Title type = 'h1'>
       		<FormattedMessage id = {'register.title'} />
     	</Title>
+		{/* <button onClick={() => dispatch(signUpRequestAction({email: 'email', password: 'password'}))}>Test</button> */}
 		<FormProvider {...methods}>
 			<Box
 				component='form'
