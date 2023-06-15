@@ -8,6 +8,7 @@ type inputProps = {
 	width?: number | string,
 	height?: number | string,
 	icon?: React.ReactNode,
+	id?: string
 }
 
 export const CustomInput = ({placeholder, width = '100%', height = 33.39, icon, ...props}: inputProps) => {
@@ -24,7 +25,6 @@ export const CustomInput = ({placeholder, width = '100%', height = 33.39, icon, 
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder={placeholder}
-        // inputProps={{ 'aria-label': 'search google maps' }}
 		{...props}
       />
       <IconButton type="button" aria-label="search">

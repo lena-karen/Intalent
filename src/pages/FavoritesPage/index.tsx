@@ -1,10 +1,10 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 
-export const SettingsPage = () => {
+export const FavoritesPage = () => {
   return (
 	<div>
-		Settings Page
+		Favovites Page
 	</div>
   )
 }

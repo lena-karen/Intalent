@@ -1,14 +1,12 @@
 import { spawn } from 'redux-saga/effects'
 import { authSaga } from './auth'
-//import { settingsSaga } from './setting';
-import { SIGN_UP_REQUEST, LOG_IN_REQUEST } from './types'
+import { settingsSaga } from './setting';
 
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import { authReducer } from './auth';
 import { settingsReducer } from './setting';
 
-const sagaMiddleware = createSagaMiddleware()
 //const middlewares = sagaMiddleware
 // declare global {
 // 	interface Window {
@@ -25,15 +23,17 @@ const rootReducer = combineReducers({
 	settings: settingsReducer,
 })
 
-export function* sagas() {
+function* sagas() {
 	yield spawn(authSaga)
-	//yield spawn(settingsSaga)
+	yield spawn(settingsSaga)
 }
 
+const sagaMiddleware = createSagaMiddleware()
+const middlewares = [sagaMiddleware]
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
-export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+export const store = createStore(rootReducer, applyMiddleware(...middlewares))
 
 
 sagaMiddleware.run(sagas)

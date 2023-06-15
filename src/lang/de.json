@@ -6,6 +6,7 @@
 	"register.email" : "Email eingeben",
 	"register.password" : "Password eingeben",
 	"register.confirm_password" : "Password bestätigen",
+	"register.phone": "Phone eingeben",
 
 	"login.title" : "Einloggen",
 	"login.email" : "Email eingeben",
@@ -20,15 +21,33 @@
 	"popup_menu.profile": "Profil",
 	"popup_menu.settings": "Einstellungen",
 	"popup_menu.messages": "Nachrichten",
+	"popup_menu.favorites": "Favoriten",
 	"popup_menu.logout": "Ausloggen",
 
 	"terms": "Nutzungsbedingungen akzeptieren",
 
 	"form.email": "E-Mail ist erforderlich",
+	"form.phone": "Phone ist erforderlich",
+	"form.phone.max": "Ungültige Telefonnummer",
 	"form.password": "Paswort ist erforderlich",
+
 	"form.password.min": "Passwort muss mehr als 8 Zeichen lang sein",
 	"form.password.max": "Passwort muss weniger als 32 Zeichen lang sein",
 	"form.password.confirm": "Bitte bestätigen Sie Ihr Passwort",
 	"form.terms": "Nutzungsbedingungen akzeptieren ist erforderlich",
-	"form.password.match": "Passwörter stimmen nicht überein"
+	"form.password.match": "Passwörter stimmen nicht überein",
+
+	"profile.images": "Laden Sie Ihr Bild hoch",
+	"profile.username": "Ihr Benutzername",
+	"profile.firstname": "Ihr Vorname",
+	"profile.lastname": "Ihr Nachname",
+	"profile.city": "Ihr Stadt",
+	"profile.email": "Ihre Email",
+
+	"profile.avatar": "Avatar",
+	"profile.edit": "Bearbeiten",
+	"profile.save": "Speichern",
+	"profile.upload": "Hochladen",
+	"profile.delete": "Löschen"
+
 }

@@ -19,15 +19,14 @@ import Search from '../Search'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import AccountMenu from '../Menu'
-import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField'
+import Tooltip from '@mui/material/Tooltip';
 import './index.scss'
 
 export default function Header({setLang}: any) {
 
 	const colorMode = useContext(ColorModeContext)
 	const theme = useTheme()
-	const colors = tokens(theme.palette.mode)
+	//const colors = tokens(theme.palette.mode)
 	const intl = useIntl()
 	//const user: ReturnType< typeof authReducer> = useSelector((store : RootState) => store.authUser)
 	const user = {}
@@ -36,12 +35,6 @@ export default function Header({setLang}: any) {
 	<header className = 'header'>
 		<Logo />
 
-		{/* <TextField id="outlined-search" label="Search field" type="search" />
-		<CustomInput 
-			placeholder = {intl.formatMessage({id: 'search.placeholder'})} 
-			width = {250}
-			icon = {<SearchIcon sx={{color: 'gray'}}/>}
-		/> */}
 		<Search />
 		<Nav />
 
@@ -60,13 +53,13 @@ export default function Header({setLang}: any) {
 			</div>
 
 			<div onClick={colorMode.toggleColorMode} className='header__menu__theme'>
-			<CustomTooltip title = {intl.formatMessage({id: 'header.theme'})}>
+			<Tooltip title = {intl.formatMessage({id: 'header.theme'})}>
 				{
 					theme.palette.mode === 'dark' 
 					? <DarkModeIcon height={28} width={28}/>
 					: <LightModeIcon height={28} width={28}/>
 				}
-			</CustomTooltip>
+			</Tooltip>
 			</div>
 		</div>
 

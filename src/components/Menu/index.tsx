@@ -9,7 +9,7 @@ import Settings from '@mui/icons-material/Settings';
 import MailIcon from '@mui/icons-material/Mail';
 import Logout from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
-import CustomTooltip from '../Tooltip';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { useIntl } from 'react-intl'
 import { Icon } from '../Icon';
@@ -70,12 +70,12 @@ export default function AccountMenu() {
 
 		<Divider />
 
-		<Link to = '/settings'>
+		<Link to = '/favorites'>
         	<MenuItem onClick={handleClose}>
 				<ListItemIcon>
-            		<Settings fontSize="small" />
+            		<FavoriteIcon fontSize="small" />
           		</ListItemIcon>
-				{intl.formatMessage({id: 'popup_menu.settings'})}
+				{intl.formatMessage({id: 'popup_menu.favorites'})}
 			</MenuItem>
 		</Link>
 

@@ -1,22 +1,21 @@
-//import logo from './logo.svg';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { logInSaga } from './redux'
+import { useDispatch } from 'react-redux';
+
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { ColorModeContext, useMode} from './theme/themeContext'
+import { loadSettingsRequestAction } from './redux';
+import { IntlProvider } from 'react-intl'
+import { messages, LOCALES, DEFAULT_LANG } from './lang'
+import { FavoritesPage } from './pages/FavoritesPage';
+
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import RegistrationPage from './pages/RegistrationPage';
 import LogInPage from './pages/LogInPage';
 import ProfilePage from './pages/ProfilePage';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { ColorModeContext, useMode} from './theme/themeContext'
-import { IUser } from './types'
-import { RootState } from './redux';
-import { logInRequestAction } from './redux';
-//import { useIntl} from 'react-intl'
-import { IntlProvider } from 'react-intl'
-import {messages} from './lang/locales'
-import { SettingsPage } from './pages/SettingsPage';
+import axios from 'axios'
+
 // declare module '@mui/material/styles' {
 //   interface Theme {
 //     status: {
@@ -32,32 +31,52 @@ import { SettingsPage } from './pages/SettingsPage';
 // }
 
 function App() {
-  //const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [location, setLocation] = useState({
+    ip: "",
+    countryName: "",
+    countryCode: "",
+    city: "",
+    timezone: ""
+  });
+
+  const getGeoInfo = () => {
+    axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        setLocation({
+          ...location,
+          ip: data.ip,
+          countryName: data.country_name,
+          countryCode: data.country_calling_code,
+          city: data.city,
+          timezone: data.timezone
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const dispatch = useDispatch()
-  //const intl = useIntl()
-  //const user: IUser = useSelector((store : RootState) => store.authUser)
-  const [logIn, setLogIn] = useState(false)
   
-  // useEffect(() => {
-  //   const currentUser = localStorage.getItem('user')
-  //   console.log(typeof currentUser)
-  //   if ( typeof currentUser === 'string') {
-  //     dispatch(logInRequestAction(JSON.parse(currentUser)))
-  //     setLogIn(true)
-  //   }
-  // }, [])
   const [theme, colorMode] = useMode()
   const [lang, setLang] = useState(navigator.language)
 
 
   useEffect(() => {
+    getGeoInfo();
     const currentLang = localStorage.getItem('lang')
     if (currentLang) {
       setLang(JSON.parse(currentLang))
     } else {
-      localStorage.setItem('lang', JSON.stringify(lang))
-    }
-
+      if (Object.values(LOCALES).includes(lang)) {
+        localStorage.setItem('lang', JSON.stringify(lang))
+      } else {
+        localStorage.setItem('lang', JSON.stringify(DEFAULT_LANG))
+      }
+    } 
+    dispatch(loadSettingsRequestAction())
   }, [])
 
   useEffect(() => {
@@ -80,7 +99,7 @@ function App() {
                 <Route path = 'login' element = {<LogInPage />} /> 
                 <Route path = 'register' element = {<RegistrationPage />} />
                 <Route path = 'profile' element = {<ProfilePage />} />
-                <Route path = 'settings' element = {<SettingsPage />} />
+                <Route path = 'favorites' element = {<FavoritesPage />} />
               </Route>
             </Routes>
           </BrowserRouter>

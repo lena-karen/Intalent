@@ -1,17 +1,12 @@
-import { todo } from 'node:test'
+import axios from 'axios'
 import { AxiosInstance } from '../../API/axios' 
 
 export const userApi = {
 	logInRequest({...rest}) {
 		console.log('login', rest)
-		return AxiosInstance.post('/login', rest)
+		return axios.post('http://localhost:8080/login', rest)
 	},
 	signUpRequest({...rest}) {
-		console.log('signup', rest)
-		return AxiosInstance.post('/register', rest)
+		return axios.post('http://localhost:8080/register', rest)
 	},
-
-	todo() {
-		return AxiosInstance.get('https://jsonplaceholder.typicode.com/todos/1')
-	}
 }

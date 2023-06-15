@@ -7,6 +7,7 @@
 	"register.email" : "Enter email",
 	"register.password" : "Enter password",
 	"register.confirm_password" : "Confirm your password",
+	"register.phone": "Enter phone number",
 
 	"login.title" : "Log in",
 	"login.email" : "Enter email",
@@ -21,16 +22,31 @@
 	"popup_menu.profile": "Profile",
 	"popup_menu.settings": "Settings",
 	"popup_menu.messages": "Messages",
+	"popup_menu.favorites": "Favorites",
 	"popup_menu.logout": "Log out",
 
 	"terms": "Accept Terms and Conditions",
 
 	"form.email": "Email is required",
+	"form.phone": "Phone is required",
+	"form.phone.max": "Invalid phone number",
 	"form.password": "Pasword is required",
 	"form.password.min": "Password must be more than 8 characters",
 	"form.password.max": "Password must be less than 32 characters",
 	"form.password.confirm": "Please confirm your password",
 	"form.terms": "Accept Terms is required",
-	"form.password.match": "Passwords do not match"
+	"form.password.match": "Passwords do not match",
 
+	"profile.images": "Upload your foto",
+	"profile.username": "Your username",
+	"profile.firstname": "Your first name",
+	"profile.lastname": "Your last name",
+	"profile.city": "Your city",
+	"profile.email": "Your Email",
+
+	"profile.avatar": "Avatar",
+	"profile.edit": "Edit",
+	"profile.save": "Save",
+	"profile.upload": "Upload",
+	"profile.delete": "Remove"
 }

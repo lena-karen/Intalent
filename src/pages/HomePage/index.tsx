@@ -1,13 +1,13 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useDispatch } from 'react-redux'
-import { signUpRequestAction } from '../../redux'
+import { signUpRequestAction, logInRequestAction } from '../../redux'
 export default function HomePage() {
 	const dispatch= useDispatch()
 
+
   return (
 	<div>
-
 		<h1>		
 			<FormattedMessage
          		id = "home.title"
@@ -20,7 +20,7 @@ export default function HomePage() {
          		defaultMessage="Intalent"
        		/>
 		</p>
-		<button onClick={() => dispatch(signUpRequestAction({email: 'email', password: 'password'}))}>Test</button>
+		{/* <button onClick={request}>Test</button> */}
 	</div>
   )
 }

@@ -4,8 +4,6 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { useNavigate, Link } from 'react-router-dom'
 import { LoadingButton } from '@mui/lab';
 
-// import { signUpRequestAction, logInRequestAction } from '../../redux/auth/actions'
-import { signUpSaga, logInSaga, signUpRequestAction, logInRequestAction } from '../../redux'
 import { FormattedMessage, useIntl } from 'react-intl'
 
 import { FormInput } from '../FormInput'

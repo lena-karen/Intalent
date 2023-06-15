@@ -1,35 +1,31 @@
-import { loadFailureSettingsAction, saveSettingsRequestAction, loadRequestSettingsAction } from './actions'
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { saveSettingsRequestAction, loadSettingsSuccessAction } from './actions'
+import { takeEvery, call, put, takeLatest } from 'redux-saga/effects';
 import { defaultSettings} from './constants'
+import { settingsTypes } from '../types';
+function* loadSettingsSaga() {
+	const currentUser = localStorage.getItem('user')
 
-function* loadSettings() {
-	try {
-		const settings = defaultSettings
-	}
-	catch (error) {
-		yield put(loadFailureSettingsAction(error))
+    if (currentUser) {
+      const user = JSON.parse(currentUser)
+      yield put(loadSettingsSuccessAction(user))
+    } else {
+		yield put(loadSettingsSuccessAction(defaultSettings))
 	}
 }
 
-function* saveSettings({newSettings}: {newSettings: any}) {
+function* saveSettingsSaga({newSettings}: ReturnType<typeof saveSettingsRequestAction>): Generator {
+	//const def = {...defaultSettings}
+	console.log(newSettings, defaultSettings)
 
-	const def = {...defaultSettings}
-	console.log(newSettings, defaultSettings, def)
-	try {
-		if (newSettings) {
-			localStorage.setItem('user', JSON.stringify(newSettings))
-		} else {
-			localStorage.setItem('user', JSON.stringify(def))
-		}
-		yield put(saveSettingsRequestAction({content: newSettings || def}))
-	} catch (err) {
-		console.log(err)
+	if (newSettings) {
+		localStorage.setItem('user', JSON.stringify(newSettings))
+	} else {
+		localStorage.setItem('user', JSON.stringify(defaultSettings))
 	}
-
-
+	yield put({ type: settingsTypes.SAVE_SETTINGS_SUCCESS, content: newSettings || defaultSettings})
 }
 
 export function* settingsSaga() {
-	// yield takeEvery(loadRequestSettingsAction, loadSettings)
-	yield takeEvery(saveSettingsRequestAction, saveSettings)
+	yield takeEvery(settingsTypes.LOAD_SETTINGS_REQUEST, loadSettingsSaga)
+	yield takeEvery(settingsTypes.SAVE_SETTINGS_REQUEST, saveSettingsSaga)
 }

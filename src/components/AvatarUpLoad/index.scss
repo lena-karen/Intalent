@@ -1,0 +1,15 @@
+@use '../../styles/base' as *;
+
+.avatar__upload {
+	@include flexBox(space-around, start);
+	flex-direction: column;
+	gap: 1rem;
+	margin: 1rem 0;
+	&__wrapper {
+		@include flexBox(start, center);
+		gap: 2rem;
+		&__item {
+			display: flex;
+		}
+	}
+}

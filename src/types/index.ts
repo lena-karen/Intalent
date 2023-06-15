@@ -10,3 +10,8 @@ export type ISignUp = {
 	onSuccess?: (() => void) | null, 
 	onError?: (() => void) | null
 }
+
+export type settingsUser = {
+	isLoggedIn: boolean,
+	token: string
+}

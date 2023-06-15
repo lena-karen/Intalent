@@ -5,14 +5,14 @@ import Title from '../../components/Title'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { LoadingButton } from '@mui/lab';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
-// import { signUpRequestAction, logInRequestAction } from '../../redux/auth/actions'
-import { signUpSaga, logInSaga, signUpRequestAction, logInRequestAction } from '../../redux'
+
 import { useNavigate, Link } from 'react-router-dom'
 import { FormInput } from '../../components/FormInput'
 import { useDispatch } from 'react-redux';
 import { literal, object, string, TypeOf} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, FormControlLabel, FormGroup, FormHelperText, Typography, Checkbox } from '@mui/material';
+import { logInRequestAction } from '../../redux';
 
 import './index.scss'
 
@@ -21,10 +21,6 @@ export default function LogInPage() {
 
 	const intl = useIntl()
 	const registerSchema = object({
-  // name: string()
-  // 	.nonempty('Name is required')
-  // 	.max(32, 'Name must be less than 100 characters')
-
 		email: string().nonempty(intl.formatMessage({id: 'form.email'})),
 		password: string()
 			.nonempty(intl.formatMessage({id: 'form.password'}))
@@ -60,7 +56,7 @@ export default function LogInPage() {
 
 	const submit: SubmitHandler<RegisterInput> = ({email, password}) => {
 		console.log('login', email, password)
-		//dispatch(logInRequestAction({email, password}))
+		dispatch(logInRequestAction({email, password}))
 	  navigate('/')
 	}
   return (

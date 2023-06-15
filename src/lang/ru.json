@@ -7,6 +7,7 @@
 	"register.email" : "Введите электронный адрес",
 	"register.password" : "Введите пароль",
 	"register.confirm_password" : "Подтвердите пароль",
+	"register.phone": "Введите номер телефона",
 
 	"login.title" : "Вход",
 	"login.email" : "Введите электронный адрес",
@@ -22,15 +23,31 @@
 	"popup_menu.profile": "Профиль",
 	"popup_menu.settings": "Настройки",
 	"popup_menu.messages": "Сообщения",
+	"popup_menu.favorites": "Избранное",
 	"popup_menu.logout": "Выйти",
 
 	"terms": "Принимаю условия использования",
 
 	"form.email": "E-Mail обязателен",
+	"form.phone": "Номер телефона обязателен",
+	"form.phone.max": "Неверный телефонный формат",
 	"form.password": "Пароль обязателен",
 	"form.password.min": "Пароль должен содержать более 8 знаков",
 	"form.password.max": "Пароль должен содержать не более 32 знаков",
 	"form.password.confirm": "Пожалуйста, подтвердите пароль",
 	"form.terms": "Принятие условий использования обязательно",
-	"form.password.match": "Пароли не совпадают"
+	"form.password.match": "Пароли не совпадают",
+
+	"profile.images": "Загрузите Вашу фотографию",
+	"profile.username": "Ваш логин",
+	"profile.firstname": "Ваше имя",
+	"profile.lastname": "Ваша фамилия",
+	"profile.city": "Ваш город",
+	"profile.email": "Ваш email",
+	
+	"profile.avatar": "Аватар",
+	"profile.edit": "Редактировать",
+	"profile.save": "Сохранить",
+	"profile.upload": "Загрузить",
+	"profile.delete": "Удалить"
 }

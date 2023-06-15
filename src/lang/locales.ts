@@ -3,6 +3,8 @@ import German from './de.json'
 import Ukrainian from './ua.json'
 import Russian from './ru.json'
 
+export const DEFAULT_LANG = 'en-US'
+
 export const LOCALES = {
 	ENGLISH: "en-US",
 	RUSSIAN: "ru-RU",

@@ -5,15 +5,19 @@ import Title from '../../components/Title'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { LoadingButton } from '@mui/lab';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
-// import { signUpRequestAction, logInRequestAction } from '../../redux/auth/actions'
-import { signUpSaga, logInSaga, signUpRequestAction, logInRequestAction } from '../../redux'
+
 import { useNavigate, Link } from 'react-router-dom'
 import { FormInput } from '../../components/FormInput'
 import { useDispatch } from 'react-redux';
 import { literal, object, string, TypeOf} from 'zod'
+import { signUpRequestAction } from '../../redux';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, Button, FormControlLabel, FormGroup, FormHelperText, Typography, Checkbox } from '@mui/material';
+import { signUpTypes } from '../../redux/types';
+import { matchIsValidTel } from 'mui-tel-input'
 
+import axios from 'axios'
+import { Box, Button, FormControlLabel, FormGroup, FormHelperText, Typography, Checkbox } from '@mui/material';
+import validator from 'validator'
 import './index.scss'
 
 export default function RegistrationPage() {
@@ -25,7 +29,11 @@ export default function RegistrationPage() {
   // 	.nonempty('Name is required')
   // 	.max(32, 'Name must be less than 100 characters')
 
-		email: string().nonempty(intl.formatMessage({id: 'form.email'})),
+		email: string()
+			.nonempty(intl.formatMessage({id: 'form.email'})),
+		phone: string()
+			.nonempty(intl.formatMessage({id: 'form.phone'}))
+			.max(15, intl.formatMessage({id: 'form.phone.max'})),
 		password: string()
 			.nonempty(intl.formatMessage({id: 'form.password'}))
 			.min(8, intl.formatMessage({id: 'form.password.min'}))
@@ -45,6 +53,7 @@ export default function RegistrationPage() {
 	resolver: zodResolver(registerSchema),
 	defaultValues: {
 		email: '',
+		phone: '',
 		password: '',
 		confirm_password: '',
 		terms: undefined
@@ -67,35 +76,50 @@ export default function RegistrationPage() {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
-	const submit: SubmitHandler<RegisterInput> = ({email, password}) => {
-		console.log('register', email, password)
-		// dispatch(signUpRequestAction({email, password}))
+	const submit: SubmitHandler<RegisterInput> = ({email, password, phone}) => {
+		console.log('phone', phone)
+		dispatch(signUpRequestAction({email, password}))
 		//navigate('/')
 	}
+	const [phone, setPhone] = useState('')
   return (
 	<section className = 'registration'>
 		<Title type = 'h1'>
       		<FormattedMessage id = {'register.title'} />
     	</Title>
-		{/* <button onClick={() => dispatch(signUpRequestAction({email: 'email', password: 'password'}))}>Test</button> */}
+		
 		<FormProvider {...methods}>
 			<Box
 				component='form'
 				noValidate
 				autoComplete='off'
 				onSubmit={handleSubmit(submit)}
-				sx = {{dispay: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%',
-				'& .MuiBox-root': {width: '100%'}}}
+				sx = {{dispay: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%', 
+				'& .MuiFormControl-root': {width: '100%', mb: '.1rem',}}}
 			>
 				<FormInput 
 					name = 'email' 
 					fullWidth
 					sx={{ mb: 2 }}
 					errors = {errors}
-					placeholder = {intl.formatMessage({id: 'register.email'})}
+					placeholder = {intl.formatMessage({id: 'register.email'}) + ' *'}
 				/> 
-				<FormHelperText error={!!errors['email']} sx = {{mb: '1rem'}}>
+				<FormHelperText error={!!errors['email']} sx = {{mt: '.1rem', mb: '1rem'}}>
 					{errors['email'] ? errors['email'].message : ''}
+				</FormHelperText>
+
+				<FormInput 
+					name = 'phone' 
+					fullWidth
+					sx={{ mb: 2 }}
+					errors = {errors}
+					isPhone = {true}
+					lang = {intl.locale}
+					placeholder = {intl.formatMessage({id: 'register.phone'})+ ' *'}
+				/>
+
+				<FormHelperText error={!!errors['phone']} sx = {{mt: '.1rem', mb: '1rem'}}>
+					{errors['phone'] ? errors['phone'].message : ''}
 				</FormHelperText>
 
 				<FormInput 
@@ -103,10 +127,10 @@ export default function RegistrationPage() {
 					fullWidth
 					sx={{ mb: 2 }}
 					errors = {errors}
-					placeholder = {intl.formatMessage({id: 'register.password'})}
+					placeholder = {intl.formatMessage({id: 'register.password'})+ ' *'}
 					isPassword = {true}
 				/>
-				<FormHelperText error={!!errors['password']} sx = {{mb: '1rem'}}>
+				<FormHelperText error={!!errors['password']} sx = {{mt: '.1rem', mb: '1rem'}}>
 					{errors['password'] ? errors['password'].message : ''}
 				</FormHelperText>
 
@@ -115,10 +139,10 @@ export default function RegistrationPage() {
 					fullWidth
 					sx={{ mb: 2 }}
 					errors = {errors}
-					placeholder = {intl.formatMessage({id: 'register.confirm_password'})}
+					placeholder = {intl.formatMessage({id: 'register.confirm_password'})+ ' *'}
 					isPassword = {true}
 				/>
-				<FormHelperText error={!!errors['confirm_password']} sx = {{mb: '1rem'}}>
+				<FormHelperText error={!!errors['confirm_password']} sx = {{mt: '.1rem', mb: '1rem'}}>
 					{errors['confirm_password'] ? errors['confirm_password'].message : ''}
 				</FormHelperText>
 
@@ -136,7 +160,7 @@ export default function RegistrationPage() {
 							</Typography>
 						}
 					/>
-					<FormHelperText error={!!errors['terms']} sx = {{mb: '1rem'}}>
+					<FormHelperText error={!!errors['terms']} sx = {{mt: '1rem', mb: '1rem'}}>
 						{errors['terms'] ? errors['terms'].message : ''}
 					</FormHelperText>
 				</FormGroup>
@@ -144,14 +168,15 @@ export default function RegistrationPage() {
 				<LoadingButton 
 					loading = {loading} 
 					variant="outlined" 
-					fullWidth type = 'submit'
+					fullWidth 
+					type = 'submit'
 					sx = {{borderColor: 'gray', color: 'gray', mb: '1rem'}}
 				>
 					<span>{intl.formatMessage({id: 'login.submit'})}</span>
 				</LoadingButton>
 				
 				<div className='registration__buttons'>
-					<Link to = 'login'>
+					<Link to = '/login'>
 						<FormattedMessage id = 'login.title' />
 					</Link>
 				</div>

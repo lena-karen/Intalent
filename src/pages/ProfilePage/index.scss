@@ -1,0 +1,17 @@
+@use '../../styles/base' as *;
+.profile {
+	&__title {
+		text-align: center;
+	}
+	&__username-personal {
+		margin-top: 1rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+	}
+	&__item {
+		display: flex;
+		flex-direction: column;
+		width: 70%;
+		margin-bottom: 2rem;
+	}
+}

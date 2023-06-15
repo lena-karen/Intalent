@@ -1,14 +1,19 @@
-import  {LOAD_SETTINGS_REQUEST, SAVE_SETTINGS_SUCCESS, LOAD_SETTINGS_FAILURE} from '../types'
+import { settingsTypes } from '../types'
 
 export const saveSettingsRequestAction = (newSettings: any) => {
-	console.log('newSettings')
-	return {type: SAVE_SETTINGS_SUCCESS, ...newSettings}
+	console.log('newSettings', newSettings)
+	return {type: settingsTypes.SAVE_SETTINGS_REQUEST, newSettings}
 }
 
-export const loadRequestSettingsAction = () => {
-	return {type: LOAD_SETTINGS_REQUEST}
+export const loadSettingsRequestAction = () => {
+	return {type: settingsTypes.LOAD_SETTINGS_REQUEST}
 }
 
-export const loadFailureSettingsAction = (payload: any) => {
-	return {type: LOAD_SETTINGS_FAILURE, payload}
+export const loadSettingsSuccessAction = (content: any) => {
+	console.log(content)
+	return {type: settingsTypes.LOAD_SETTINGS_SUCCESS, content}
+}
+
+export const loadSettingsFailureAction = (payload: any) => {
+	return {type: settingsTypes.LOAD_SETTINGS_FAILURE, payload}
 }
