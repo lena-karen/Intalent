@@ -1,0 +1,6 @@
+export * from './FavoritesPage'
+export * from './HomePage'
+export * from './LogInPage'
+export * from './MessagesPage'
+export * from './ProfilePage'
+export * from './RegistrationPage'

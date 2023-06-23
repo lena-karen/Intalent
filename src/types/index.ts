@@ -1,17 +1,2 @@
-export type IUser = {
-	email: string,
-	password: string,
-	isLoggedIn?: boolean
-}
-
-export type ISignUp = {
-	email: string, 
-	password: string, 
-	onSuccess?: (() => void) | null, 
-	onError?: (() => void) | null
-}
-
-export type settingsUser = {
-	isLoggedIn: boolean,
-	token: string
-}
+export * from './countryCity'
+export * from './redux'

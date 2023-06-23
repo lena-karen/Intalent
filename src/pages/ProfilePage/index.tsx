@@ -1,23 +1,61 @@
-import React, { useState } from "react";
-import { FormattedMessage } from "react-intl";
-import { Avatar, Divider, InputLabel } from "@mui/material";
-import ProfileItem from "../../components/ProfileItem";
-import Title from "../../components/Title";
+import React, {useState, useCallback, useEffect} from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import { Divider, InputLabel } from "@mui/material";
+import { ProfileItem, CustomInput, CustomSelect } from "../../components";
 
-import { CustomInput } from "../../components/CustomInput";
-import { useIntl } from "react-intl";
+import { Country, State, City } from "country-state-city";
+
 import "./index.scss";
 import AvatarUpload from "../../components/AvatarUpLoad";
+import { countryType, cityType } from '../../types';
+import { useCountry } from '../../hooks';
 
-export default function ProfilePage() {
+export const ProfilePage = () => {
+  const [country, setCountry] = useState<countryType>({flag: '', id: '', value: '', label: ''});
+  const [citiesList, setCitiesList] = useState([{flag: '', id: '', value: '', label: ''}])
+  const [city, setCity] = useState<cityType>({value: '', label: ''})
+  const countriesList = useCountry()
   const intl = useIntl();
 
+  // const getCountrieslist = useCallback(() => {
+  //   const countries = Country.getAllCountries();
+  //   return countries.map((el) => ({
+  //     flag: el.flag,
+  //     value: el.isoCode,
+  //     label: el.name,
+  //   }));
+  
+  // }, [])
+
+  // useEffect(() => {
+  //   getCountrieslist()
+  // }, [])
+
+  useEffect(() => {
+    const citiesOfSelectedCountry = City.getCitiesOfCountry(country.value)
+    if (citiesOfSelectedCountry) {
+      setCitiesList(citiesOfSelectedCountry.map((el) => (
+        {
+          id: '',
+          flag: '',
+          value: el.stateCode,
+          label: el.name,
+        }
+        )))};
+  }, [country])
+
+  // let cities 
+  // if (country) {
+  //   City.getCitiesOfCountry(country.value as string) 
+  // }
+  // const citiesList: cityType[] = cities.map((el) => ({
+  //   value: el.stateCode,
+  //   label: el.name,
+  // }));
+
+  console.log(countriesList);
   return (
     <div className="profile">
-      {/* <Title type="h1" className="profile__title">
-        Profile Page
-      </Title> */}
-
       <AvatarUpload />
 
       <Divider />
@@ -83,18 +121,40 @@ export default function ProfilePage() {
           </div>
         </ProfileItem>
 
-        <ProfileItem>
+        {/* <ProfileItem> */}
+          <div className="profile__item">
+            <InputLabel shrink htmlFor="city-input" sx={{ marginBottom: 1 }}>
+              {intl.formatMessage({ id: "profile.country" })}
+            </InputLabel>
+            <CustomSelect
+              list={countriesList}
+              initial={countriesList[0].value}
+              isCountry={true}
+              value = {country}
+              setValue = {setCountry}
+            />
+          </div>
+        {/* </ProfileItem> */}
+
+        {/* <ProfileItem> */}
           <div className="profile__item">
             <InputLabel shrink htmlFor="city-input" sx={{ marginBottom: 1 }}>
               {intl.formatMessage({ id: "profile.city" })}
             </InputLabel>
+            {/* <CustomSelect
+              list={citiesList}
+              initial={citiesList[0].value as string}
+              isCity={true}
+              value = {city}
+              setValue = {setCity}
+            /> */}
             <CustomInput
               placeholder={intl.formatMessage({ id: "profile.city" })}
               id="city-input"
             />
           </div>
-        </ProfileItem>
+        {/* </ProfileItem> */}
       </div>
     </div>
   );
-}
+};

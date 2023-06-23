@@ -1,9 +1,19 @@
 {
   "users": [
     {
-      "email": "test@mail.com",
-      "password": "$2a$10$vhKCtaxxBe8P4f5n4CJrsOnhwSoMaeqmzindmTf5kiflUWdR8ToBG",
+      "email": "test@com.ua",
+      "password": "$2a$10$OgGGlWik913GNbBL7OKKK.yw3CKAQoWVBUUar2L8/DWSae8cYCLa6",
       "id": 1
+    },
+    {
+      "email": "test1@mail.com",
+      "password": "$2a$10$90xzuL3jVy8avzONW2DbXuSaegFYuGNe3GUgUkXMfEn3pGSLLKGja",
+      "id": 2
+    },
+    {
+      "email": "test12@mail.ru",
+      "password": "$2a$10$KazqARMNPDXVZ5/sT4magu5q6otmGPgOXtS7B83BuzYYFJ4gf6I7e",
+      "id": 3
     }
   ]
 }

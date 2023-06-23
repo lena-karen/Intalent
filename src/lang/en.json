@@ -14,8 +14,10 @@
 	"login.password" : "Enter password",
 	"login.forgot" : "Forgot the password?",
 	"login.registered" : "Not registered?",
-
-	"login.submit" : "Send",
+	"login.error": "The email address or password that you've entered doesn't match any account. Sign up for an accout or try again",
+	
+	"login.submit" : "Log in",
+	"register.submit" : "Sign up",
 
 	"search.placeholder" : "Search...",
 
@@ -41,6 +43,7 @@
 	"profile.username": "Your username",
 	"profile.firstname": "Your first name",
 	"profile.lastname": "Your last name",
+	"profile.country": "Your country",
 	"profile.city": "Your city",
 	"profile.email": "Your Email",
 

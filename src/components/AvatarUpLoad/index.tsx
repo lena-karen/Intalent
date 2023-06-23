@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { useIntl } from "react-intl";
 import { Avatar, Button } from "@mui/material";
-import Title from "../Title";
+import { Title } from "../../components";
 
 import "./index.scss";
 
 export default function AvatarUpload() {
   const [images, setImages] = useState([]);
   const [isUploaded, setIsUpLoaded] = useState(false);
-  console.log(isUploaded);
+
   const maxNumber = 1;
   const intl = useIntl();
   const onChange = (
@@ -20,6 +20,7 @@ export default function AvatarUpload() {
     setImages(imageList as never[]);
     setIsUpLoaded(true);
   };
+  
   return (
     <div className="avatar__upload">
       <Title type="h3"> {intl.formatMessage({ id: "profile.avatar" })} </Title>

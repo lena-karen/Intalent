@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React from 'react'
 
 import './index.scss'
 
@@ -8,7 +8,7 @@ interface TitleProps {
 	className?: string
 
 }
-export default function Title({type, children, className}: TitleProps, {...props}) {
+export const Title = ({type, children, className}: TitleProps, {...props}) => {
   switch (type) {
 		case 'h1':
 			return <h1 className = {['h1', className].join(' ')} {...props}>{children}</h1>

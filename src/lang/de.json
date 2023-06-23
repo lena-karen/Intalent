@@ -13,8 +13,10 @@
 	"login.password" : "Password eingeben",
 	"login.forgot" : "Password vergessen?",
 	"login.registered" : "Nicht registriert?",
+	"login.error": "Die von Ihnen eingegebene E-Mail-Adresse oder das Passwort stimmen mit keinem Konto überein. Eröffnen Sie ein Konto oder versuchen Sie es erneut",
 
-	"login.submit" : "Senden",
+	"login.submit" : "Einloggen",
+	"register.submit" : "Registrieren",
 
 	"search.placeholder" : "Suchen...",
 
@@ -41,7 +43,8 @@
 	"profile.username": "Ihr Benutzername",
 	"profile.firstname": "Ihr Vorname",
 	"profile.lastname": "Ihr Nachname",
-	"profile.city": "Ihr Stadt",
+	"profile.country": "Ihr Land",
+	"profile.city": "Ihre Stadt",
 	"profile.email": "Ihre Email",
 
 	"profile.avatar": "Avatar",

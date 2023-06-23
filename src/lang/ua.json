@@ -14,8 +14,10 @@
 	"login.password" : "Введіть пароль",
 	"login.forgot" : "Забули пароль?",
 	"login.registered" : "Ще не зареєстровані?",
-
-	"login.submit" : "Відправити",
+	"login.error": "Адреса електронної пошти або пароль, які ви ввели, не відповідають жодному обліковому запису. Створіть обліковий запис або повторіть спробу",
+	
+	"login.submit" : "Увійти",
+	"register.submit" : "Зареєструватися",
 
 	"search.placeholder" : "Пошук...",
 
@@ -41,6 +43,7 @@
 	"profile.username": "Ваш логін",
 	"profile.firstname": "Ваше им'я",
 	"profile.lastname": "Ваше прізвище",
+	"profile.country": "Ваша країна",
 	"profile.city": "Ваше місто",
 	"profile.email": "Ваш email",
 

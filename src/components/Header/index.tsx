@@ -1,68 +1,95 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useContext } from 'react'
-import { ColorModeContext } from '../../theme/themeContext'
-import { IUser, ISignUp } from '../../types'
-import { useTheme } from '@mui/material'
-import { tokens } from '../../theme/themeContext'
-import { RootState } from '../../redux/rootSaga'
-import { authReducer } from '../../redux'
-import { MdOutlineLanguage } from 'react-icons/md'
-import { Icon } from '../Icon'
-import { useIntl } from 'react-intl'
-import { CustomInput } from '../CustomInput'
-import CustomTooltip from '../Tooltip'
-import SelectComponent from '../Select'
-import Logo from '../Logo'
-import Nav from '../Nav'
-import Search from '../Search'
-import LightModeIcon from '@mui/icons-material/LightMode'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
-import AccountMenu from '../Menu'
-import Tooltip from '@mui/material/Tooltip';
-import './index.scss'
+import React, { useState, useCallback } from "react";
+import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { ColorModeContext } from "../../theme/themeContext";
 
-export default function Header({setLang}: any) {
+import { useTheme, Select, MenuItem, TextField } from "@mui/material";
+import { useIntl } from "react-intl";
+import LanguageIcon from "@mui/icons-material/Language";
 
-	const colorMode = useContext(ColorModeContext)
-	const theme = useTheme()
-	//const colors = tokens(theme.palette.mode)
-	const intl = useIntl()
-	//const user: ReturnType< typeof authReducer> = useSelector((store : RootState) => store.authUser)
-	const user = {}
+import Logo from "../Logo";
+import Nav from "../Nav";
+import Search from "../Search";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+
+import { Tooltip, Box } from "@mui/material";
+import "./index.scss";
+import { languages } from "../../lang";
+import { categories } from "../Sidebar";
+
+export default function Header({ lang, setLang }: any) {
+  const [category, setCategory] = useState(categories[0].label);
+  const colorMode = useContext(ColorModeContext);
+  const theme = useTheme();
+  const intl = useIntl();
+
+  const handleChange = useCallback(
+    (event: any) => {
+      localStorage.setItem("lang", JSON.stringify(event.target.value));
+      setLang(event.target.value);
+    },
+    [lang, setLang]
+  );
 
   return (
-	<header className = 'header'>
-		<Logo />
+    <header className="header">
+      <Logo />
+      
+      <Search /> 
+      <Nav />
 
-		<Search />
-		<Nav />
+      <div className="header__menu">
+        <div className="header__menu__select">
+          <TextField
+            variant="outlined"
+            InputLabelProps={{
+              style: {
+                fontSize: 18,
+                color: "grey",
+                backgroundColor: "white",
+                fontFamily: "monospace",
+                height: "33.39px",
+              },
+            }}
+            sx={{
+              "& .MuiInputBase-root": {
+                height: "33.33px",
+                width: "75px",
+                borderRadius: ".5rem",
+                border: ".1rem solid gray",
+              },
+              "& .MuiOutlinedInput-input": {
+                overflow: "visible !important",
+              },
+            }}
+            id="demo-simple-select"
+            value={lang}
+            select
+            SelectProps={{ IconComponent: () => <LanguageIcon /> }}
+            onChange={(e) => handleChange(e)}
+          >
+            {languages.map((l) => (
+              <MenuItem key={l.value} value={l.value}>
+                {l.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
 
-		<div className = 'header__menu'>
-			
-			<div className='header__menu__select'>
-				<SelectComponent 
-					placeholder={
-						<Icon 
-							icon = {<MdOutlineLanguage size={24} />} 
-							className = 'header__menu__select__icon'
-						/>
-					}
-					setLang = {setLang}
-				/>
-			</div>
-
-			<div onClick={colorMode.toggleColorMode} className='header__menu__theme'>
-			<Tooltip title = {intl.formatMessage({id: 'header.theme'})}>
-				{
-					theme.palette.mode === 'dark' 
-					? <DarkModeIcon height={28} width={28}/>
-					: <LightModeIcon height={28} width={28}/>
-				}
-			</Tooltip>
-			</div>
-		</div>
-
-	</header>
-  )
+        <div
+          onClick={colorMode.toggleColorMode}
+          className="header__menu__theme"
+        >
+          <Tooltip title={intl.formatMessage({ id: "header.theme" })}>
+            {theme.palette.mode === "dark" ? (
+              <DarkModeIcon height={28} width={28} />
+            ) : (
+              <LightModeIcon height={28} width={28} />
+            )}
+          </Tooltip>
+        </div>
+      </div>
+    </header>
+  );
 }

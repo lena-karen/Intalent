@@ -1,7 +1,5 @@
 import React from 'react';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
+import { Paper, InputBase, IconButton } from '@mui/material';
 
 type inputProps = {
 	placeholder: string,

@@ -12,14 +12,13 @@ export function* logInSaga({email, password, onSuccess, onError}: ReturnType<typ
 	try {
 		const response: any = yield call(userApi.logInRequest, {email, password})
 
-		console.log(response)
 		yield put(saveSettingsRequestAction({token: response.data.accessToken, isLoggedIn: true}))
 		yield put(logInSuccessAction(response.data))
 		onSuccess?.()
 	}
-	catch (err: any) {
+	catch (error: any) {
 		onError?.()
-		yield put({type: logInTypes.LOG_IN_FAILURE, err})
+		yield put({type: logInTypes.LOG_IN_FAILURE, error})
 	}
 }
 

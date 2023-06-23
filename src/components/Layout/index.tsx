@@ -7,11 +7,11 @@ import Sidebar from '../Sidebar'
 
 import './index.scss'
 
-export default function Layout({setLang}: any): JSX.Element {
+export const Layout = ({lang, setLang}: any): JSX.Element => {
   return (
 	<div className = 'layout'>
 		<div className="container">
-			<Header setLang = {setLang} />
+			<Header lang = {lang} setLang = {setLang} />
 			<div className = 'layout__content'>
 				<div className = 'layout__content__sidebar'>
 					<Sidebar />

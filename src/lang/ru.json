@@ -15,8 +15,10 @@
 
 	"login.forgot" : "Забыли пароль?",
 	"login.registered" : "Еще не зарегистрированы?",
-
-	"login.submit" : "Отправить",
+	"login.error": "Введенный адрес электронной почты или пароль не соответствуют ни одной учетной записи. Создайте учетную запись или повторите попытку",
+	
+	"login.submit" : "Войти",
+	"register.submit" : "Зарегистрироваться",
 
 	"search.placeholder" : "Поиск...",
 
@@ -42,6 +44,7 @@
 	"profile.username": "Ваш логин",
 	"profile.firstname": "Ваше имя",
 	"profile.lastname": "Ваша фамилия",
+	"profile.country": "Ваша страна",
 	"profile.city": "Ваш город",
 	"profile.email": "Ваш email",
 	

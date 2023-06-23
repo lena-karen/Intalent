@@ -1,5 +1,5 @@
 import { Box, IconButton, Tooltip } from "@mui/material";
-import React, { FC } from "react";
+import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import { useIntl } from "react-intl";
@@ -9,7 +9,7 @@ type profileProps = {
   children: React.ReactNode;
 };
 
-export default function ProfileItem({ children }: profileProps) {
+export const ProfileItem = ({ children }: profileProps) => {
   const intl = useIntl();
   return (
     <Box sx = {{display: 'flex', gap: '1rem', alignItems: 'center'}}>

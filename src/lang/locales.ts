@@ -20,8 +20,8 @@ export const LOCALES = {
   }
 
   export const languages = [
-	{ value: LOCALES.ENGLISH, label: 'EN'},
-	{ value: LOCALES.RUSSIAN, label: 'RU'},
-	{ value: LOCALES.GERMAN, label: 'DE'},
-	{ value: LOCALES.UKRAINIAN, label: 'UA'},
+	{ id: '1', value: LOCALES.ENGLISH, label: 'EN'},
+	{ id: '2', value: LOCALES.RUSSIAN, label: 'RU'},
+	{ id: '3', value: LOCALES.GERMAN, label: 'DE'},
+	{ id: '4', value: LOCALES.UKRAINIAN, label: 'UA'},
 ]

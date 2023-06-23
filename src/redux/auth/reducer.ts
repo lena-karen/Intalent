@@ -23,7 +23,7 @@ export const authReducer = (state = initialState, action: {type: any, data: any,
 			return {...state, isLoading: false, error: action.error}
 
 		case logInTypes.LOG_IN_FAILURE:
-			return {...state, isLoading: false, error: action.error}
+			return {...state, isLoading: false, error: action.error.response.data}
 
 		default: 
 			return state
