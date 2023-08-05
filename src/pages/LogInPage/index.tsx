@@ -54,84 +54,90 @@ export const LogInPage = () => {
 
   return (
     <section className="login">
-      {isSubmitSuccessful && data.isLoggedIn ? (
-        <Alert
-          severity="success"
-          sx={{ transform: "scale(1.5)", marginTop: "1rem" }}
-        >
-          <AlertTitle>You are successfully logged in!</AlertTitle>
-        </Alert>
-      ) : (
-        <>
-          <Title type="h1">
-            <FormattedMessage id={"login.title"} />
-          </Title>
-          {user?.error && (
-            <Alert severity="error">
-              <AlertTitle>
-                {intl.formatMessage({ id: "login.error" })}
-              </AlertTitle>
-            </Alert>
-          )}
-          <FormProvider {...methods}>
-            <Box
-              component="form"
-              noValidate
-              autoComplete="off"
-              onSubmit={handleSubmit(submit)}
-              sx={{
-                dispay: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                width: "100%",
-              }}
-            >
-              <FormInput
-                name="email"
-                fullWidth
-                sx={{ mb: 2 }}
-                errors={errors}
-                placeholder={intl.formatMessage({ id: "register.email" })}
-              />
-              <FormHelperText error={!!errors["email"]} sx={{ mb: "1rem" }}>
-                {errors["email"] ? errors["email"].message : ""}
-              </FormHelperText>
-
-              <FormInput
-                name="password"
-                fullWidth
-                sx={{ mb: 2 }}
-                errors={errors}
-                placeholder={intl.formatMessage({ id: "register.password" })}
-                isPassword={true}
-              />
-              <FormHelperText error={!!errors["password"]} sx={{ mb: "1rem" }}>
-                {errors["password"] ? errors["password"].message : ""}
-              </FormHelperText>
-
-              <LoadingButton
-                loading={loading}
-                variant="outlined"
-                fullWidth
-                type="submit"
-                sx={{ borderColor: "gray", color: "gray", mb: "1rem" }}
+      <div className="login__content">
+        {isSubmitSuccessful && data.isLoggedIn ? (
+          <Alert
+            severity="success"
+            sx={{ transform: "scale(1.5)", marginTop: "1rem" }}
+          >
+            <AlertTitle>You are successfully logged in!</AlertTitle>
+          </Alert>
+        ) : (
+          <div className='login__content__form'>
+            <Title type="h1">
+              <FormattedMessage id={"login.title"} />
+            </Title>
+            {user?.error && (
+              <Alert severity="error">
+                <AlertTitle>
+                  {intl.formatMessage({ id: "login.error" })}
+                </AlertTitle>
+              </Alert>
+            )}
+            <FormProvider {...methods}>
+              <Box
+                component="form"
+                noValidate
+                autoComplete="off"
+                onSubmit={handleSubmit(submit)}
+                sx={{
+                  dispay: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  width: "100%",
+                }}
               >
-                <span>{intl.formatMessage({ id: "login.submit" })}</span>
-              </LoadingButton>
+                <FormInput
+                  name="email"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  errors={errors}
+                  placeholder={intl.formatMessage({ id: "register.email" })}
+                />
+                <FormHelperText error={!!errors["email"]} sx={{ mb: "1rem" }}>
+                  {errors["email"] ? errors["email"].message : ""}
+                </FormHelperText>
 
-              <div className="login__buttons">
-                <Link to="/">
-                  <FormattedMessage id="login.forgot" />
-                </Link>
+                <FormInput
+                  name="password"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  errors={errors}
+                  placeholder={intl.formatMessage({ id: "register.password" })}
+                  isPassword={true}
+                />
+                <FormHelperText
+                  error={!!errors["password"]}
+                  sx={{ mb: "1rem" }}
+                >
+                  {errors["password"] ? errors["password"].message : ""}
+                </FormHelperText>
 
-                <Link to="/register">
-                  <FormattedMessage id="login.registered" />
-                </Link>
-              </div>
-            </Box>
-          </FormProvider>
-        </>
-      )}
+                <LoadingButton
+                  loading={loading}
+                  variant="outlined"
+                  fullWidth
+                  type="submit"
+                  sx={{ borderColor: "gray", color: "gray", mb: "1rem" }}
+                >
+                  <span>{intl.formatMessage({ id: "login.submit" })}</span>
+                </LoadingButton>
+
+                <div className="login__buttons">
+                  <Link to="/">
+                    <FormattedMessage id="login.forgot" />
+                  </Link>
+
+                  <Link to="/register">
+                    <FormattedMessage id="login.registered" />
+                  </Link>
+                </div>
+              </Box>
+            </FormProvider>
+          </div>
+        )}
+        <div className="registration__bg"></div>
+      </div>
     </section>
   );
-}
+};

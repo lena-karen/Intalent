@@ -32,7 +32,7 @@ export default function Nav() {
             <Icon icon = {<CiBellOn size={24}/>} style = { {fill: 'white'}} />
           </Link>
         </Tooltip>
-        <AccountMenu /> 
+        {/* <AccountMenu />  */}
       </>
     }
 

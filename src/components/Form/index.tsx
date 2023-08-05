@@ -83,6 +83,7 @@ export default function Form({route}: any) {
       >
         <FormInput 
           name = 'email' 
+          variant='filled'
           fullWidth
           sx={{ mb: 2 }}
           errors = {errors}

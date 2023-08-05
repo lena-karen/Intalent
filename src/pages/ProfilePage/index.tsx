@@ -56,6 +56,7 @@ export const ProfilePage = () => {
   console.log(countriesList);
   return (
     <div className="profile">
+      <div className='profile__bg'></div>
       <AvatarUpload />
 
       <Divider />

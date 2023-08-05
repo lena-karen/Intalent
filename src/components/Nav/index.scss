@@ -1,7 +1,9 @@
 @use '../../styles/base/' as *;
 .nav {
 	@include flexBox(null, center);
-		gap: 1rem;
+	gap: 1rem;
+	margin-left: auto;
+    margin-right: 1rem;
 		&__account {
 			// position: relative;
 		}

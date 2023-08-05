@@ -1,11 +1,14 @@
 @use '../../styles/base' as *;
 .header {
 	height: $header_height;
-	padding: 3rem 0;
+	padding: 2rem;
+	margin-top: 1rem;
+	border-radius: 30px;
+	position: sticky;
+    z-index: 100;
 	@include flexBox(space-between, center);
 	border-bottom: .1rem solid lightgray;
-	//background: $color_0F0F10;
-	//color: $color_C5C6CB;
+
 	&__menu {
 		@include flexBox(null, center);
 		gap: 1rem;

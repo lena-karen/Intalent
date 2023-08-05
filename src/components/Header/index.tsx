@@ -9,21 +9,21 @@ import LanguageIcon from "@mui/icons-material/Language";
 
 import Logo from "../Logo";
 import Nav from "../Nav";
-import Search from "../Search";
+//import Search from "../Search";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import { Tooltip, Box } from "@mui/material";
 import "./index.scss";
 import { languages } from "../../lang";
-import { categories } from "../Sidebar";
+//import { categories } from "../Sidebar";
 
 export default function Header({ lang, setLang }: any) {
-  const [category, setCategory] = useState(categories[0].label);
+  //const [category, setCategory] = useState(categories[0].label);
   const colorMode = useContext(ColorModeContext);
   const theme = useTheme();
   const intl = useIntl();
-
+console.log(theme.palette)
   const handleChange = useCallback(
     (event: any) => {
       localStorage.setItem("lang", JSON.stringify(event.target.value));
@@ -33,10 +33,10 @@ export default function Header({ lang, setLang }: any) {
   );
 
   return (
-    <header className="header">
+    <header className="header" style = {{backgroundColor: theme.palette.background.paper}}>
       <Logo />
       
-      <Search /> 
+      {/* <Search />  */}
       <Nav />
 
       <div className="header__menu">

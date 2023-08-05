@@ -1,7 +1,15 @@
 @use '../../styles/base' as *;
 .login {
-	@include flexBox(null, center);
-	flex-direction: column;
+	@include flexBox(start, center);
+	&__content {
+		width: 60%;
+		&__form {
+			@include flexBox(center, center);
+			flex-direction: column;
+			width: 100%;
+		}
+	}
+
 	padding: 0 4rem;
 	&__buttons {
 		display: flex;

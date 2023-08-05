@@ -1,6 +1,6 @@
 {
-	"home.title" : "Добро пожаловать на Integra" ,
-	"home.content" : "Здесь Вы найдете нужную Вам информацию на понятном Вам языке",
+	"home.title" : "Добро пожаловать на TESTIM" ,
+	"home.content" : "Здесь Вы можете создать нужный Вам тест",
 	"header.theme": "Цвета сайта",
 
 	"register.title" : "Регистрация",
@@ -52,5 +52,13 @@
 	"profile.edit": "Редактировать",
 	"profile.save": "Сохранить",
 	"profile.upload": "Загрузить",
-	"profile.delete": "Удалить"
+	"profile.delete": "Удалить",
+
+	"sidebar.personal": "Персональный аккаунт",
+	"sidebar.departments": "Отделы",
+	"sidebar.tests": "Тесты",
+	"sidebar.statistics": "Статистика",
+	"sidebar.news": "Новости",
+	"sidebar.settings": "Настройки",
+	"sidebar.help": "Помощь"
 }

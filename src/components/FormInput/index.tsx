@@ -61,6 +61,7 @@ export const FormInput: React.FC<formInputProps> = ({name, placeholder, isPasswo
 
             label={placeholder}
             variant="standard"
+            color="secondary" 
             type = {
               isPassword 
               ? passwordVisible ? 'text' : 'password'

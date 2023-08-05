@@ -1,9 +1,27 @@
 @use '../../styles/base' as *;
 .registration {
-	@include flexBox(center, center);
-	flex-direction: column;
-	width: 100%;
+	@include flexBox(start, center);
+	&__content {
+		width: 60%;
+		&__form {
+			@include flexBox(center, center);
+			flex-direction: column;
+			width: 100%;
+		}
+	}
+	
 	padding: 0 4rem;
+	&__bg {
+		height: 100%;
+		width: 50%;
+		border-radius: 10px;
+		background-image: url('./assets/bg-img.jpg');
+		position: absolute;
+		right: -15%;
+		top: 0;
+		transform: skewX(-10deg);
+	}
+
 	&__buttons {
 		display: flex;
 		justify-content: center;

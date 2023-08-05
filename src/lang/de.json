@@ -1,6 +1,6 @@
 {
-	"home.title" : "Willkommen auf Integra" ,
-	"home.content" : "Hier finden Sie alles was Sie brauchen in Ihre Sprache",
+	"home.title" : "Willkommen auf TESTIM" ,
+	"home.content" : "Hier können Sie den gewünschten Test erstellen",
 	"header.theme": "Farbmodus",
 	"register.title" : "Registration",
 	"register.email" : "Email eingeben",
@@ -51,6 +51,14 @@
 	"profile.edit": "Bearbeiten",
 	"profile.save": "Speichern",
 	"profile.upload": "Hochladen",
-	"profile.delete": "Löschen"
+	"profile.delete": "Löschen",
+
+	"sidebar.personal": "Persönliches Konto",
+	"sidebar.departments": "Abteilungen",
+	"sidebar.tests": "Tests",
+	"sidebar.statistics": "Statistiken",
+	"sidebar.news": "Nachrichten",
+	"sidebar.settings": "Einstellungen",
+	"sidebar.help": "Hilfe"
 
 }

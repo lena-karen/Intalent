@@ -1,4 +1,8 @@
 @use '../../styles/base' as *;
 .logo {
 	@include flexBox(space-between, center);
+	& img {
+		width: 10rem;
+	}
+	
 }
